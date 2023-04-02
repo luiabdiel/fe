@@ -1,30 +1,31 @@
+import { IOrder } from '../../types/IOrder';
 import { Board, OdersContainer } from './styles';
 
-type OrdersBoardProps = {
+interface OrdersBoardProps {
   icon: string;
   title: string;
+  orders: IOrder[];
 }
 
-export function OrdersBoard({ icon, title }: OrdersBoardProps) {
+export function OrdersBoard({ icon, title, orders }: OrdersBoardProps) {
   return (
     <Board>
       <header>
         <span>{icon}</span>
         <strong>{title}</strong>
-        <span>(1)</span>
+        <span>({orders.length})</span>
       </header>
 
-      <OdersContainer>
-        <button type='button'>
-          <strong>Mesa 2</strong>
-          <span>2 itens</span>
-        </button>
-
-        <button type='button'>
-          <strong>Mesa 2</strong>
-          <span>2 itens</span>
-        </button>
-      </OdersContainer>
+      {orders.length > 0 && (
+        <OdersContainer>
+          {orders.map((order) => (
+            <button type='button' key={order._id}>
+              <strong>Mesa {order.table}</strong>
+              <span>{order.products.length} itens</span>
+            </button>
+          ))}
+        </OdersContainer>
+      )}
     </Board>
   );
 }
