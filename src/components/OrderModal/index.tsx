@@ -2,6 +2,7 @@ import { Overlay, ModalBody, OrderDetails, Actions } from './styles';
 import closeIcon from '../../assets/images/close-icon.svg';
 import { IOrder } from '../../types/IOrder';
 import { formatCurrency } from '../../utils/formatCurrency';
+import { useEffect } from 'react';
 
 interface IOrderModalProps {
   visible: boolean;
@@ -10,6 +11,21 @@ interface IOrderModalProps {
 }
 
 export function OrderModal({ visible, order, onClose }: IOrderModalProps) {
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      console.log(event.key);
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  },[]);
+
   if (!visible || !order) return null;
 
   const total = order.products.reduce((total, { product, quantity }) => {
