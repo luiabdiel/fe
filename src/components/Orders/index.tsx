@@ -11,7 +11,7 @@ const orders: IOrder[] = [
       {
         product: {
           name: 'Pizza quatro queijos',
-          imagePath: '1668472896991-quatro-queijos.png',
+          imagePath: '1680110664185-quatro-queijos.png',
           price: 40,
         },
         quantity: 3,
@@ -20,7 +20,7 @@ const orders: IOrder[] = [
       {
         product: {
           name: 'Coca cola',
-          imagePath: '1668473462705-coca-cola.png',
+          imagePath: '1680112298845-coca-cola.png',
           price: 7,
         },
         quantity: 2,
